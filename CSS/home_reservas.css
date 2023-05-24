@@ -1,0 +1,129 @@
+/*Div imagem de fundo*/
+.img_fundo{
+    height: 190px;
+    background-image: url(../Imagens/pexels-fauxels-3184192.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+/*Corpo*/
+.principal{
+    border: 2px solid black;
+    padding: 50px;
+    margin: auto;
+    width: 55%;
+    position: relative;
+    top: 20%;
+    height: 100vh;
+}
+
+
+/*Carrosel*/
+.carousel-inner{
+    height: 100px;
+    margin: auto;
+    border: 1px solid #95613C;
+}
+
+.item-carrosel{
+    box-sizing: content-box;
+    height: 50%;
+}
+
+.carousel-item{
+    box-sizing: content-box;
+} 
+
+
+
+/*Div informações*/
+.info_geral{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 500px;
+    background-color: blueviolet;
+    margin: auto;
+    margin-bottom: 150px;
+}
+
+.infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color:#95613C;
+    height: 400px;
+    margin: auto;
+    align-items: center;
+    vertical-align: middle;
+}
+
+
+/*Infos esquerda*/
+.info_esq{
+    display: flex;
+    width: 40%;
+    background-color: turquoise;
+}
+
+    /*Div Logo*/
+        .logo{
+            display: flex;
+            justify-content: center;
+            background-color: black;
+            margin-bottom: 20px;
+        }
+
+        .logo img{
+            max-width: 10%;
+        }
+
+
+    /*Div informações sobre o restaurante*/
+        .info_restaurante{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: brown;
+        }
+
+        .img-textos{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: auto;
+            width: 90%;
+        }
+
+        .img img{
+            max-width: 10%;
+        }
+
+        .textos{
+            display: flex;
+            flex-direction: column;
+        }
+        .textos h3{
+            color: #95613C;
+            font-size: medium;
+        }
+
+        .textos p{
+            font-size: smaller;
+        }
+
+
+/*Infos direita*/
+.info_dir{
+    height: 80px;
+    width: 40%;
+    background-color: tomato;
+}
+
+/*Botões*/
+.botoes{
+    height: 70px;
+    background-color: chartreuse;
+    margin: auto;
+}
