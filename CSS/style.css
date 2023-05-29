@@ -15,8 +15,20 @@
     background-color: #400601;
 }
 
+.cabecalho img{
+    width: 70%;
+}
+
 .cabecalho a{
     color: #FFF;
+}
+
+.cabecalho a:hover{
+    color: #000;
+}
+
+.dropdown-item{
+    background-color: #400601;
 }
 
 
@@ -38,6 +50,10 @@
 @media screen and (max-width: 575px){
     .rodape{
         font-size: 0.8em;
+    }
+
+    .cabecalho img{
+        width: 50%;
     }
 
 }
