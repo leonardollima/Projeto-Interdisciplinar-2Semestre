@@ -1,37 +1,86 @@
 const Sequelize = require("sequelize")
-const sequelize = new Sequelize("test", "root", "", {
-    host: "localhost",
-    dialect: "mysql"
+const sequelize = new Sequelize("ReservasOn", "root", "", {
+  host: "localhost",
+  dialect: "mysql"
 })
-module.exports  = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
+module.exports = {
+  Sequelize: Sequelize,
+  sequelize: sequelize
 }
 
 sequelize.authenticate().then(function () {
-    console.log("Conectado com sucesso")
+  console.log("Conectado com sucesso")
 }).catch(function (erro) {
-    console.log("Falha ao conectar: " + erro)
+  console.log("Falha ao conectar: " + erro)
 })
 
-const User = sequelize.define("Cliente", {
-    inputNome: { type: Sequelize.STRING },    
-    inputTelefone: { type: Sequelize.INTEGER },
-    inputEmail: { type: Sequelize.TEXT },    
-    inputAniversario: { type: Sequelize.DATEONLY }, 
-    inputPassword: { type: Sequelize.TEXT }
-})
-const Agendamento = sequelize.define("reserva", {
-    inputEmail: { type: Sequelize.TEXT },
-    inputUnidade: { type: Sequelize.STRING },
-    inputAmbiente: { type: Sequelize.STRING },      
-    inputMesa: { type: Sequelize.INTEGER },
-    inputLugares: { type: Sequelize.INTEGER },           
-    inputDataReserva: { type: Sequelize.DATEONLY }, 
-    inputHoraReserva: { type: Sequelize.TIME }
-})
-User.hasMany(Agendamento, { foreignKey: 'idCliente' });
+const Restaurantes = sequelize.define("Restaurantes", {
+  Nome: { type: Sequelize.STRING, allowNull: false },
+  CNPJ: { type: Sequelize.INTEGER , allowNull: false}
+}, { sequelize, modelName: 'Restaurantes' })
 
+const Unidades = sequelize.define("Unidades", {
+  CNPJ: { type: Sequelize.STRING, allowNull: false },
+  endereco: { type: Sequelize.STRING, allowNull: false }
+}, { sequelize, modelName: 'Unidades' })
+
+Restaurantes.hasMany(Unidades, { foreignKey: 'IdRestaurantes' })
+Unidades.belongsTo(Restaurantes, { foreignKey: 'IdRestaurantes' })
+
+const Ambientes = sequelize.define("Ambientes", {
+  nome: { type: Sequelize.STRING }
+}, { sequelize, modelName: 'Ambientes' })
+
+Unidades.hasMany(Ambientes, { foreignKey: 'IdUnidade' })
+Ambientes.belongsTo(Unidades, { foreignKey: 'IdUnidade' })
+
+const Mesas = sequelize.define("Mesas", {
+  Assentos: { type: Sequelize.INTEGER }
+}, { sequelize, modelName: 'Mesas' })
+
+Mesas.belongsTo(Ambientes, { foreignKey: 'IdAmbientes' })
+Ambientes.hasMany(Mesas, { foreignKey: 'IdAmbientes' })
+
+const Periodos = sequelize.define("Periodos", {
+  PeriodosDATA: { type: Sequelize.DATEONLY , allowNull: false}
+}, { sequelize, modelName: 'Periodos' })
+
+const horarios = sequelize.define("horarios", {
+  HORAfuncionamento: {
+    type: Sequelize.TINYINT,
+    allowNull: false,
+    unique: true
+  }
+}, { sequelize, modelName: 'horarios' })
+
+horarios.hasMany(Periodos, { foreignKey: 'Idhorarios' })
+Periodos.belongsTo(horarios, { foreignKey: 'Idhorarios' })
+
+const MesasPeriodos = sequelize.define("MesasPeriodos", {
+  Disponivel: { type: Sequelize.BOOLEAN , allowNull: false}
+}, { sequelize, modelName: 'MesasPeriodos' })
+
+Periodos.belongsToMany(Mesas, { through: MesasPeriodos });
+Mesas.belongsToMany(Periodos, { through: MesasPeriodos });
+
+const Reservas = sequelize.define("Reservas", {
+}, { sequelize, modelName: 'Reservas' })
+Reservas.belongsTo(MesasPeriodos, { foreignKey: 'IdMesasPeriodos' })
+MesasPeriodos.hasMany(Reservas, { foreignKey: 'IdMesasPeriodos' })
+
+const Clientes = sequelize.define("Clientes", {
+  inputNome: { type: Sequelize.STRING , allowNull: false },
+  inputTelefone: { type: Sequelize.INTEGER },
+  inputEmail: { type: Sequelize.TEXT , allowNull: false, unique: true },
+  inputAniversario: { type: Sequelize.DATEONLY },
+  inputPassword: { type: Sequelize.TEXT, allowNull: false }
+}, { sequelize, modelName: 'Clientes' })
+
+Clientes.hasMany(Reservas, { foreignKey: 'IdClientes' })
+Reservas.belongsTo(Clientes, { foreignKey: 'IdClientes' })
+
+sequelize.sync({ alter: true })
+console.log("All models were synchronized successfully.")
 //Agendamento.sync({ force: true })
 //Agendamento.sync({ })
 

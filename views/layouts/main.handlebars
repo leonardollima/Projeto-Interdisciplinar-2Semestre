@@ -13,6 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -23,7 +26,8 @@
             <nav class="navbar navbar-expand-sm p-3 cabecalho">
                 <div class="container-fluid d-flex justify-content-evenly">
                     <div class="logo">
-                        <a class="navbar-brand" href="#"><img src="https://user-images.githubusercontent.com/112758733/242298689-cc0ea27e-fe34-4c63-a85e-094a9fda1ff8.png"
+                        <a class="navbar-brand" href="/"><img
+                                src="https://user-images.githubusercontent.com/112758733/242298689-cc0ea27e-fe34-4c63-a85e-094a9fda1ff8.png"
                                 alt="Logo genérica do restaurante"></a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
@@ -33,7 +37,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav">
-                            <a class="nav-link " aria-current="page" href="#">Home &#x1F3E0;</a>
+                            <a class="nav-link " aria-current="page" href="/">Home &#x1F3E0;</a>
                             <a class="nav-link" href="#">Cardápio &#x1F4D6;</a>
                             <a class="nav-link" href="#">Galeria &#x1F4F7;</a>
                             <li class="nav-item dropdown">
@@ -42,8 +46,8 @@
                                     Reservas &#x1F4C5;
                                 </a>
                                 <ul class="dropdown-menu" style="background-color: #400601;">
-                                    <li><a class="dropdown-item" href="#">Reservar</a></li>
-                                    <li><a class="dropdown-item" href="#">Minhas reservas</a></li>
+                                    <li><a class="dropdown-item" href="/reserva">Reservar</a></li>
+                                    <li><a class="dropdown-item" href="/historico/{{id}}">Minhas reservas</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
@@ -52,7 +56,7 @@
                                     Conta&#x1F465;
                                 </a>
                                 <ul class="dropdown-menu" style="background-color: #400601;">
-                                    <li><a class="dropdown-item" href="#">Login</a></li>
+                                    <li><a class="dropdown-item" href="/login">Login</a></li>
                                     <li><a class="dropdown-item" href="#">Minha conta </a></li>
                                 </ul>
                             </li>
@@ -75,10 +79,13 @@
 </body>
 
 
-<style> 
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cardo&display=swap%27');
+
     /* style.css*/
     /*Config Geral*/
     * {
+        font-family: 'Cardo', serif;
         margin: 0;
         padding: 0;
     }
@@ -289,6 +296,263 @@
             width: 80%;
         }
     }
-</style> 
+
+
+    /*reserva*/
+    @charset "UTF-8";
+
+
+/*Container FOrmulário*/
+.container-form{
+    display: flex;
+    margin: 40px;
+    width: 80%;
+    justify-content: space-between;
+    border: 1px solid #95613C;
+    border-radius: 25px;
+    padding: 5%;
+    margin-bottom: 7%;
+}
+
+
+/*Div Formulário*/
+.form{
+    width: 50%;
+}
+
+.form h1, p{
+    text-align: left;
+    
+}
+
+.form h1{
+    color: #95613C;
+}
+
+.form a{
+    color: #95613C;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+.form a:hover{
+    text-decoration: underline;
+    transition: 0.8s;
+}
+
+.inputs{
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+.campos{
+    text-align: left;
+}
+
+.campos label{
+    color: #95613C;
+    text-align: left;
+    margin-top: 15px;
+    width: auto;
+}
+
+
+.btn{
+    display: flex;
+    background-color: #95613C;
+    color: #fff;
+    width: 80%;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.btn:hover{
+    background-color: #ffffff;
+    border: 1px solid #95613C;
+    color: #95613C;
+}
+
+
+/*Div imagem*/
+.container-imagem{
+    width: 30%;
+    margin: auto;
+}
+
+.imagem{
+    padding-left: 50px;
+}
+
+.imagem p{
+    text-align: center;
+}
+
+
+/*Responsividade*/
+@media screen and (max-width: 1000px){
+    .container-imagem{
+        display: none;
+    }
+
+    .form{
+        width: 90%;
+        margin: auto;
+        box-sizing: content-box;
+    }
+
+    .form h1{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 575px){
+    .btn{
+        display: inline-block;
+    }
+
+    .rodape{
+        font-size: 0.8em;
+    }
+
+}
+/*editarreserva*/
+
+@charset "UTF-8";
+
+
+/*Container FOrmulário*/
+.container-form{
+    display: flex;
+    margin: 40px;
+    width: 80%;
+    justify-content: space-between;
+    border: 1px solid #95613C;
+    border-radius: 25px;
+    padding: 5%;
+    margin-bottom: 7%;
+}
+
+
+/*Div Formulário*/
+.form{
+    width: 50%;
+}
+
+.form h1, p{
+    text-align: left;
+    
+}
+
+.form h1{
+    color: #95613C;
+}
+
+.form a{
+    color: #95613C;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+
+.form a:hover{
+    text-decoration: underline;
+    transition: 0.8s;
+}
+
+.inputs{
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+.campos{
+    text-align: left;
+}
+
+.campos label{
+    color: #95613C;
+    text-align: left;
+    margin-top: 15px;
+    width: auto;
+}
+
+.botao{
+    margin-top: 50px;
+}
+
+.btn{
+    display: flex;
+    background-color: #95613C;
+    color: #fff;
+    width: 80%;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.btn:hover{
+    background-color: #ffffff;
+    border: 1px solid #95613C;
+    color: #95613C;
+}
+
+#inputCancelar{
+    color: #95613C;
+    background-color: #fff;
+    border: 1px solid #95613C;
+}
+
+#inputCancelar:hover{
+    background-color: #95613C;
+    color: #fff;
+}
+
+
+/*Div imagem*/
+.container-imagem{
+    width: 30%;
+    margin: auto;
+}
+
+.imagem{
+    padding-left: 50px;
+}
+
+.imagem p{
+    text-align: center;
+}
+
+
+/*Responsividade*/
+@media screen and (max-width: 1000px){
+    .container-imagem{
+        display: none;
+    }
+
+    .form{
+        width: 90%;
+        margin: auto;
+        box-sizing: content-box;
+    }
+
+    .form h1{
+        text-align: center;
+        margin-top: 20px;
+    }
+
+}
+
+
+@media screen and (max-width: 575px){
+    .btn{
+        display: inline-block;
+    }
+
+    .rodape{
+        font-size: 0.8em;
+    }
+
+}
+</style>
 
 </html>
